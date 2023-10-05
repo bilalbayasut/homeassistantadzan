@@ -1,4 +1,4 @@
-# Home Assistant [![made-for-homeassistant](https://img.shields.io/badge/for-homeassistant-blue)](https://www.home-assistant.io/)
+# Adzan Automation [![made-for-homeassistant](https://img.shields.io/badge/for-homeassistant-blue)](https://www.home-assistant.io/)
 ***Adzan otomatis dengan homeassistant dan google nest***
 
 Sensor Jadwal Sholat untuk Home Assistant dan Automation integrasi _Google Smart Speaker Media Player_
