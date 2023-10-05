@@ -2,15 +2,15 @@
 ***Adzan otomatis dengan homeassistant dan google nest***
 
 Sensor Jadwal Sholat untuk Home Assistant dan Automation integrasi _Google Smart Speaker Media Player_
-untuk memainkan lantunan Suara Adzan sesuai jadwal sholat.
+untuk memainkan lantunan Suara Adzan sesuai jadwal sholat. Lokasi dapat digunakan di manapun termasuk indonesia.
 
 **Yang perlu disiapkan :**
 - Longitude
 - Lattitude
 
 **Yang perlu di lakukan :**
-- Membuat sensor jadwal waktu sholat menggunakan REST API dari aladhan.com, menyesuaikan lokasi LATITUDE & LONGITUDE dengan mengedit file sensors.yaml
-- Membuat automation dengan trigger sensor waktu sholat, dengan action media_player.play_media memutar file mp3. edit file automation.yaml
+- Membuat sensor jadwal waktu sholat menggunakan REST API dari aladhan.com, menyesuaikan lokasi LATITUDE & LONGITUDE dengan mengedit file _sensors.yaml_
+- Membuat automation dengan trigger sensor waktu sholat, dengan action media_player.play_media memutar file mp3. edit file _automation.yaml_
 - ganti `change_this_into_your_google_nest_name` ke nama media / google nest anda
 ```yaml
 target:
