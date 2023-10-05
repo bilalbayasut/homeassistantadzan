@@ -1,0 +1,54 @@
+# sensors.yaml
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
+    - "date_time"
+    - "date_time_iso"
+    - "time_date"
+    - "time_utc"
+    - "beat"
+
+- platform: rest
+  name: "prayer_times"
+  unique_id: prayer_times
+  json_attributes:
+    - data
+  resource: "https://api.aladhan.com/v1/timings?latitude=<LATITUDE>&longitude=<LONGITUDE>&method=5&school=2"
+  value_template: '{{ value_json["data"]["meta"]["method"]["name"].title() }}'
+  scan_interval: 3600
+
+- platform: template
+  sensors:
+    fajr:
+      friendly_name: "Fajr"
+      unique_id: fajr_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Fajr"] | timestamp_custom("%H:%M") }}'
+    sunrise:
+      friendly_name: "Sunrise"
+      unique_id: sunrise_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Sunrise"] | timestamp_custom("%H:%M") }}'
+    dhuhr:
+      friendly_name: "Dhuhr"
+      unique_id: dhuhr_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Dhuhr"] | timestamp_custom("%H:%M") }}'
+    asr:
+      friendly_name: "Asr"
+      unique_id: asr_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Asr"] | timestamp_custom("%H:%M") }}'
+    maghrib:
+      friendly_name: "Maghrib"
+      unique_id: maghrib_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Maghrib"] | timestamp_custom("%H:%M") }}'
+    isha:
+      friendly_name: "Isha"
+      unique_id: isha_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Isha"] | timestamp_custom("%H:%M") }}'
+    midnight:
+      friendly_name: "Midnight"
+      unique_id: midnight_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Midnight"] | timestamp_custom("%H:%M") }}'
+    tahajjud:
+      friendly_name: "Tahajjud"
+      unique_id: tahajjud_prayer_time
+      value_template: '{{ states.sensor.prayer_times.attributes.data.timings["Imsak"] | timestamp_custom("%H:%M") }}'
