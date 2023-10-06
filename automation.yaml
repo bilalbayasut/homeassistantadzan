@@ -13,7 +13,7 @@
         }}'
       id: dhuhr
     - platform: template
-      value_template: '{{ states("sensor.time") == states("sensor.asr") }}'
+      value_template: '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Maghrib"] }}'
       id: asr
     - platform: template
       value_template:
