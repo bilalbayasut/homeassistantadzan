@@ -17,7 +17,7 @@
       id: asr
     - platform: template
       value_template:
-        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Maghrib"]
+        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Asr"]
         }}'
       id: maghrib
     - platform: template
