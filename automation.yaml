@@ -1,78 +1,48 @@
 - id: prayer_times
   alias: Putar Suara Adzan
-  description: ""
+  description: "Automation to play Adzan based on prayer times"
   trigger:
-    - platform: template
-      value_template:
-        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Fajr"]
-        }}'
+    - platform: time
+      at: sensor.fajr
       id: fajr
-    - platform: template
-      value_template:
-        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Dhuhr"]
-        }}'
+    - platform: time
+      at: sensor.dhuhr
       id: dhuhr
-    - platform: template
-      value_template: '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Maghrib"] }}'
+    - platform: time
+      at: sensor.asr
       id: asr
-    - platform: template
-      value_template:
-        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Asr"]
-        }}'
+    - platform: time
+      at: sensor.maghrib
       id: maghrib
-    - platform: template
-      value_template:
-        '{{ states("sensor.time") == states.sensor.prayer_times.attributes.data.timings["Isha"]
-        }}'
+    - platform: time
+      at: sensor.isha
       id: isha
   condition: []
   action:
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 3
-        milliseconds: 0
-      alias: Delay
     - service: media_player.volume_set
       data:
         volume_level: "0.5"
       target:
         entity_id: media_player.change_this_into_your_google_nest_name
-    - if:
-        - condition: trigger
-          id:
-            - fajr
-      then:
-        - service: media_player.play_media
-          target:
-            entity_id: media_player.change_this_into_your_google_nest_name
-          data:
-            media_content_id: media-source://media_source/local/azansubuh.mp3
-            media_content_type: audio/mpeg
-          metadata:
-            title: azansubuh.mp3
-            thumbnail:
-            media_class: music
-            children_media_class:
-            navigateIds:
-              - {}
-              - media_content_type: app
-                media_content_id: media-source://media_source
-      else:
-        - service: media_player.play_media
-          target:
-            entity_id: media_player.change_this_into_your_google_nest_name
-          data:
-            media_content_id: media-source://media_source/local/Adhan Makkah.mp3
-            media_content_type: audio/mpeg
-          metadata:
-            title: Adhan Makkah.mp3
-            thumbnail:
-            media_class: music
-            children_media_class:
-            navigateIds:
-              - {}
-              - media_content_type: app
-                media_content_id: media-source://media_source
-      enabled: true
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: "fajr"
+          sequence:
+            - service: media_player.play_media
+              target:
+                entity_id: media_player.change_this_into_your_google_nest_name
+              data:
+                media_content_id: media-source://media_source/local/azansubuh.mp3
+                media_content_type: audio/mpeg
+        - conditions:
+            - condition: trigger
+              id: ["dhuhr", "asr", "maghrib", "isha"]
+          sequence:
+            - service: media_player.play_media
+              target:
+                entity_id: media_player.change_this_into_your_google_nest_name
+              data:
+                media_content_id: media-source://media_source/local/Adhan Makkah.mp3
+                media_content_type: audio/mpeg
   mode: single
