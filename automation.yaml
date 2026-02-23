@@ -1,6 +1,6 @@
 - id: prayer_times
   alias: Putar Suara Adzan
-  description: "Automation to play Adzan based on prayer times"
+  description: "Automation to play Adzan using modern action structure"
   trigger:
     - platform: time
       at: sensor.fajr
@@ -17,32 +17,29 @@
     - platform: time
       at: sensor.isha
       id: isha
-  condition: []
   action:
     - service: media_player.volume_set
       data:
-        volume_level: "0.5"
+        volume_level: 0.5
       target:
-        entity_id: media_player.change_this_into_your_google_nest_name
+        entity_id: media_player.family_room_speaker
     - choose:
         - conditions:
             - condition: trigger
-              id: "fajr"
+              id: fajr
           sequence:
             - service: media_player.play_media
               target:
-                entity_id: media_player.change_this_into_your_google_nest_name
+                entity_id: media_player.family_room_speaker
               data:
-                media_content_id: media-source://media_source/local/azansubuh.mp3
-                media_content_type: audio/mpeg
-        - conditions:
-            - condition: trigger
-              id: ["dhuhr", "asr", "maghrib", "isha"]
-          sequence:
-            - service: media_player.play_media
-              target:
-                entity_id: media_player.change_this_into_your_google_nest_name
-              data:
-                media_content_id: media-source://media_source/local/Adhan Makkah.mp3
-                media_content_type: audio/mpeg
+                media_content_id: "media-source://media_source/local/azansubuh.mp3"
+                media_content_type: "audio/mpeg"
+      # The 'else' logic must be inside 'default' for a 'choose' block
+      default:
+        - service: media_player.play_media
+          target:
+            entity_id: media_player.family_room_speaker
+          data:
+            media_content_id: "media-source://media_source/local/Adhan Makkah.mp3"
+            media_content_type: "audio/mpeg"
   mode: single
