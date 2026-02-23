@@ -1,22 +1,6 @@
-# Use the modern template integration format
-- sensor:
-    - name: "Fajr"
-      unique_id: fajr_prayer_time
-      state: '{{ state_attr("sensor.prayer_times", "data")["timings"]["Fajr"] }}'
-    - name: "Dhuhr"
-      unique_id: dhuhr_prayer_time
-      state: '{{ state_attr("sensor.prayer_times", "data")["timings"]["Dhuhr"] }}'
-    - name: "Asr"
-      unique_id: asr_prayer_time
-      state: '{{ state_attr("sensor.prayer_times", "data")["timings"]["Asr"] }}'
-    - name: "Maghrib"
-      unique_id: maghrib_prayer_time
-      state: '{{ state_attr("sensor.prayer_times", "data")["timings"]["Maghrib"] }}'
-    - name: "Isha"
-      unique_id: isha_prayer_time
-      state: '{{ state_attr("sensor.prayer_times", "data")["timings"]["Isha"] }}'
+# sensors.yaml
 
-# The REST platform remains under the sensor domain but should use state_attr for reliability
+# Keep the REST sensor as is, but ensure it's under the sensor: domain
 - platform: rest
   name: "prayer_times"
   unique_id: prayer_times
@@ -26,7 +10,31 @@
   value_template: '{{ value_json["data"]["meta"]["method"]["name"].title() }}'
   scan_interval: 3600
 
-# Note: The 'time_date' platform is still valid for sensor.time
-- platform: time_date
-  display_options:
-    - "time"
+# MODERN TEMPLATE FORMAT
+# This should be under the 'template:' key in configuration.yaml
+- sensor:
+    - name: "Fajr"
+      unique_id: fajr_prayer_time
+      state: >
+        {% set sensor = states.sensor.prayer_times %}
+        {{ sensor.attributes.data.timings["Fajr"] if sensor and sensor.attributes.data else "unavailable" }}
+    - name: "Dhuhr"
+      unique_id: dhuhr_prayer_time
+      state: >
+        {% set sensor = states.sensor.prayer_times %}
+        {{ sensor.attributes.data.timings["Dhuhr"] if sensor and sensor.attributes.data else "unavailable" }}
+    - name: "Asr"
+      unique_id: asr_prayer_time
+      state: >
+        {% set sensor = states.sensor.prayer_times %}
+        {{ sensor.attributes.data.timings["Asr"] if sensor and sensor.attributes.data else "unavailable" }}
+    - name: "Maghrib"
+      unique_id: maghrib_prayer_time
+      state: >
+        {% set sensor = states.sensor.prayer_times %}
+        {{ sensor.attributes.data.timings["Maghrib"] if sensor and sensor.attributes.data else "unavailable" }}
+    - name: "Isha"
+      unique_id: isha_prayer_time
+      state: >
+        {% set sensor = states.sensor.prayer_times %}
+        {{ sensor.attributes.data.timings["Isha"] if sensor and sensor.attributes.data else "unavailable" }}
