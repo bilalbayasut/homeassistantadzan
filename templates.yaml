@@ -1,0 +1,42 @@
+# templates.yaml
+- sensor:
+    - name: "Fajr"
+      unique_id: fajr_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Fajr'] if prayer_data else 'unavailable' }}
+    - name: "Sunrise"
+      unique_id: sunrise_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Sunrise'] if prayer_data else 'unavailable' }}
+    - name: "Dhuhr"
+      unique_id: dhuhr_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Dhuhr'] if prayer_data else 'unavailable' }}
+    - name: "Asr"
+      unique_id: asr_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Asr'] if prayer_data else 'unavailable' }}
+    - name: "Maghrib"
+      unique_id: maghrib_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Maghrib'] if prayer_data else 'unavailable' }}
+    - name: "Isha"
+      unique_id: isha_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Isha'] if prayer_data else 'unavailable' }}
+    - name: "Midnight"
+      unique_id: midnight_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Midnight'] if prayer_data else 'unavailable' }}
+    - name: "Tahajjud"
+      unique_id: tahajjud_prayer_time
+      state: >
+        {% set prayer_data = state_attr('sensor.prayer_times', 'data') %}
+        {{ prayer_data['timings']['Imsak'] if prayer_data else 'unavailable' }}
