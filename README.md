@@ -1,5 +1,7 @@
 # Adzan Automation [![made-for-homeassistant](https://img.shields.io/badge/for-homeassistant-blue)](https://www.home-assistant.io/)
 
+![Adzan Automation Cover](image_c55b45.jpg)
+
 [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 ---
@@ -223,4 +225,3 @@ Ganti `media_player.family_room_speaker` dengan nama entitas speaker Google Nest
 * **REST API**: [Aladhan.com](https://aladhan.com/prayer-times-api)
 * **Audio Adzan**: [PrayTimes.org](http://praytimes.org/audio/)
 * **Referensi**: [Home Assistant Community](https://community.home-assistant.io/t/hanafi-islamic-prayer-time/147440/10)
-
