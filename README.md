@@ -1,6 +1,3 @@
-Berikut adalah perbaikan file `README.md` Anda. Perubahan utama meliputi perbaikan tautan navigasi bahasa agar berfungsi dengan benar (menggunakan *anchor links*), pembersihan URL API yang berantakan, serta penyatuan struktur dokumen agar lebih profesional.
-
-```markdown
 # Adzan Automation [![made-for-homeassistant](https://img.shields.io/badge/for-homeassistant-blue)](https://www.home-assistant.io/)
 
 [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
@@ -227,6 +224,3 @@ Ganti `media_player.family_room_speaker` dengan nama entitas speaker Google Nest
 * **Audio Adzan**: [PrayTimes.org](http://praytimes.org/audio/)
 * **Referensi**: [Home Assistant Community](https://community.home-assistant.io/t/hanafi-islamic-prayer-time/147440/10)
 
-```
-
-```
