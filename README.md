@@ -1,6 +1,6 @@
 # Adzan Automation [![made-for-homeassistant](https://img.shields.io/badge/for-homeassistant-blue)](https://www.home-assistant.io/)
 
-![Adzan Automation Cover](image_c55b45.jpg)
+![Adzan Automation Cover](https://github.com/bilalbayasut/homeassistantadzan/blob/7f4ca8caa579247e4487ae50ac00ec7209ec4e19/cover_art.jpeg)
 
 [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
