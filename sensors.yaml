@@ -1,40 +1,15 @@
 # sensors.yaml
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
 
-# Keep the REST sensor as is, but ensure it's under the sensor: domain
 - platform: rest
   name: "prayer_times"
   unique_id: prayer_times
   json_attributes:
     - data
+  # Replace <LATITUDE> and <LONGITUDE> with your actual coordinates
   resource: "https://api.aladhan.com/v1/timings?latitude=<LATITUDE>&longitude=<LONGITUDE>&method=5&school=2"
   value_template: '{{ value_json["data"]["meta"]["method"]["name"].title() }}'
   scan_interval: 3600
-
-# MODERN TEMPLATE FORMAT
-# This should be under the 'template:' key in configuration.yaml
-- sensor:
-    - name: "Fajr"
-      unique_id: fajr_prayer_time
-      state: >
-        {% set sensor = states.sensor.prayer_times %}
-        {{ sensor.attributes.data.timings["Fajr"] if sensor and sensor.attributes.data else "unavailable" }}
-    - name: "Dhuhr"
-      unique_id: dhuhr_prayer_time
-      state: >
-        {% set sensor = states.sensor.prayer_times %}
-        {{ sensor.attributes.data.timings["Dhuhr"] if sensor and sensor.attributes.data else "unavailable" }}
-    - name: "Asr"
-      unique_id: asr_prayer_time
-      state: >
-        {% set sensor = states.sensor.prayer_times %}
-        {{ sensor.attributes.data.timings["Asr"] if sensor and sensor.attributes.data else "unavailable" }}
-    - name: "Maghrib"
-      unique_id: maghrib_prayer_time
-      state: >
-        {% set sensor = states.sensor.prayer_times %}
-        {{ sensor.attributes.data.timings["Maghrib"] if sensor and sensor.attributes.data else "unavailable" }}
-    - name: "Isha"
-      unique_id: isha_prayer_time
-      state: >
-        {% set sensor = states.sensor.prayer_times %}
-        {{ sensor.attributes.data.timings["Isha"] if sensor and sensor.attributes.data else "unavailable" }}
